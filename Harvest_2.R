@@ -38,16 +38,23 @@ library(matrixStats)
 library(Rcapture)
 library(ggpubr)
 #######################################################################################
-
+##load csv file containing data for Harvest plots
 df <- read.csv(file="S:\\MyData\\Harvest_plot_data.csv",
                header=TRUE, sep=",",stringsAsFactors = TRUE)
 
+##Subset to just plot 1 outcome measure
 Care_Entry <- df[ which(df$Outcome=='1'), ]
+
+##Make it a data frame - not strictly necessary
 df_CE <- data.frame(Care_Entry)
 
+##Order left to right on Harvest plot
 df_CE$Effect <- factor(df_CE$Effect, levels = c("Intervention", "No Difference", "Control"))
+
+###Not strictly necessary but reminder of levels present
 df_CE$ROB <- factor(df_CE$ROB, levels = c("High", "Moderate", "Low"))
 
+###ggplot with facets for Effect
 ggplot(df_CE, aes(x=Number, y=Qual_num, fill=ROB,width=3)) +
   geom_bar(stat="identity",position = position_dodge2(preserve="single", padding=.6,width=1)) +
   geom_hline(yintercept=df$Qual_num, linetype="solid", color = "black") +
@@ -55,11 +62,6 @@ ggplot(df_CE, aes(x=Number, y=Qual_num, fill=ROB,width=3)) +
   xlab('') + ylab('') +
   scale_y_continuous(breaks=NULL) +
   ggtitle("Are Young People More Likely to Enter Care \n Following Shared Decision-Making Meetings than CAU?") +
-  #ggtitle("Is Satisfaction with Shared Decision-Making Meetings \n Greater than with CAU?") +
-  #ggtitle("Are Participants More Empowered by \n Shared Decision-Making Meetings than CAU?") +
-  #ggtitle("Are Children More Likely to Re-Enter Care \n Following Shared Decision-Making Meetings than CAU?") +
-  #ggtitle("Is the Rate of Family Reunification Higher \n Following Shared Decision-Making Meetings than CAU?") +
-  #ggtitle("Is the Rate of Referral or Rereferral\n for Maltreatment Higher \n Following Shared Decision Meetings than CAU?") +
   scale_fill_manual(values=c("red", "yellow", "green"))+
   theme(plot.title = element_text(hjust = 0.5,face="bold"),
         axis.title.y = element_text(size=11, face="bold"), axis.title.x = element_text(face="bold"),
