@@ -61,7 +61,12 @@ ggplot(df_CE, aes(x=Number, y=Qual_num, fill=ROB,width=3)) +
   facet_grid(~Effect,drop=FALSE) + 
   xlab('') + ylab('') +
   scale_y_continuous(breaks=NULL) +
-  ggtitle("Are Young People More Likely to Enter Care \n Following Shared Decision-Making Meetings than CAU?") +
+  #ggtitle("Are shared decision-making family meetings effective in reducing \n out-of-home placements in families of children <18?") +
+  ggtitle("Are shared decision-making family meetings effective at \n improving family satisfaction with child welfare services?") +
+  #ggtitle("Are shared decision-making family meetings effective at \n improving family empowerment ?") +
+ #ggtitle("Are shared decision-making family meetings meetings effective in reducing \n care re-entry in families of children <18?") +
+  #ggtitle("Are shared decision-making family meetings effective at increasing \n reunification in families of children <18?") +
+  #ggtitle("Do shared decision-making family meetings result in fewer referrals for child maltreatment?") +
   scale_fill_manual(values=c("red", "yellow", "green"))+
   theme(plot.title = element_text(hjust = 0.5,face="bold"),
         axis.title.y = element_text(size=11, face="bold"), axis.title.x = element_text(face="bold"),
@@ -73,6 +78,7 @@ ggplot(df_CE, aes(x=Number, y=Qual_num, fill=ROB,width=3)) +
   geom_text(aes(label=StudyNumber), position=position_dodge2(padding=.6, width=1), vjust=2,hjust=0.5,fontface="bold") +
   geom_text(aes(label=Asterisk),position=position_dodge2(padding=.6, width=2), vjust=-0.5,hjust=0.5,fontface="bold") +
   guides(fill=guide_legend(title="Risk of Bias")) 
+
 
 
 
